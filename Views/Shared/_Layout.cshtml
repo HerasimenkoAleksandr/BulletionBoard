@@ -1,0 +1,106 @@
+﻿﻿@using System.Security.Claims
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BulletionBoard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BulletionBoard.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BulletionBoard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                          @if (Context.User.Identity?.IsAuthenticated ?? true)
+                          {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark move " asp-area="" asp-controller="Ads" asp-action="AdsForm">Додати оголошення</a>
+                                </li>
+                          }
+                    </ul>
+                   
+                    @if (Context.User.Identity?.IsAuthenticated ?? true)
+                    {
+                        String avatar = Context.User.Claims
+                        .First(claim => claim.Type == ClaimTypes.UserData)
+                        .Value;
+                        String id = Context.User.Claims
+                        .First(claim => claim.Type == ClaimTypes.Sid)
+                        .Value;
+                        if (String.IsNullOrEmpty(avatar)) avatar = "Def549b2bb3-81dd-49b4-9609-ef8fdc7608d3.jpg";
+                        <a href="@Url.Action("Profile", "Home", new { id = id })">
+
+                                <img src="/avatars/@(avatar)" class="nav-avatar" />   
+                        </a>
+
+                    }
+                    else
+                    {
+                        <!-- Button trigger modal -->
+                       
+                        <button type="button" class="btn  move"
+                                data-bs-toggle="modal"
+                                data-bs-target="#authModal">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                        </button>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - BulletionBoard - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">Вхід у систему</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="auth-login" class="form-label">Логін:</label>
+                        <input type="text" class="form-control" id="auth-login" name="login" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="auth-password" class="form-label">Пароль:</label>
+                        <input type="password" class="form-control" id="auth-password" name="password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="auth-message" class="alert alert-danger visually-hidden" role="alert"></div>
+                    <a asp-controller="Home" asp-action="Sіgnup"
+                       class="btn btn-success">Реєстрація</a>
+                    <button id="auth-button" type="button" class="btn btn-light">Увійти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

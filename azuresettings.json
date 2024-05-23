@@ -1,0 +1,9 @@
+{
+  "CosmosDB": {
+    "Endpoint": "https://cosmos-spd111.documents.azure.com:443/",
+    "Key": "l6ylXQ4vzfPgUHw03mrTby2Wn87nzxb5CivOSEzfObuVtIJzPE6YHXzzGwNEBmStRDMumfEUqwkEACDb6tLCdA==",
+    "applicationName": "Azure-SPD111",
+    "DbName": "ToDoList"
+  }
+}
+

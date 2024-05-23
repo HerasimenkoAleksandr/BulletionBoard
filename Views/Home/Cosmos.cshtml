@@ -1,0 +1,20 @@
+﻿@model BulletionBoard.Models.Home.SignupViewModel
+@{
+    ViewData["Title"] = "cosmos";
+}
+@{if (Model.userEntities != null)
+    {
+        foreach (var userEntity in Model.userEntities)
+        {
+           
+            <p>@userEntity.Login</p>
+            <p>@userEntity.Id</p>
+            
+        }
+    }
+    else
+    {
+        <p>No user entities available.</p>
+    }
+}
+

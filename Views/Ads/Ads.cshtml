@@ -1,0 +1,91 @@
+﻿﻿@using System.Security.Claims
+@model BulletionBoard.Models.Ads.AdsViewModel
+@{
+    ViewData["Title"] = @Model.Page.NameForTitle;
+}
+<body class="beta">
+    <div class="text-center">
+        <h1 class="display-4">@Model.Page.Name</h1>
+    </div>
+    @if (Model.AdsEntities.Count==0)
+    {
+        <div class="text-center my-5 mx-5">
+            <h1 class="display-4">У цій категорії оголошення відсутні</h1>
+        </div>
+    }
+    else
+    {
+        @for (int i = Model.AdsEntities.Count-1; i >= 0 ; i--)
+        {
+            <div class="card mb-3 rounded-3 ">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-4 p-3">
+                        @if (@Model.AdsEntities[i].Pictures!=null)
+                        {
+                            <img src="~/@Model.AdsEntities[i].Pictures" class="img-fluid rounded-3 fixed-size-img" alt="...">
+                        }
+                        else
+                        {
+                            <img src="~/Defdepositphotos_12629953-stock-photo-3d-man-holding-blank-board" class="img-fluid rounded-3 fixed-size-img" alt="...">
+                        }
+
+                    </div>
+
+                    <div class="col-md-8 p-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.AdsEntities[i].Name</h5>
+                            <p class="card-text overflow-auto" style="max-height: 160px;">
+                                @Model.AdsEntities[i].Description
+                            </p>
+                            <div class="row">
+                                <div class="col-4">
+                                <p class="card-text"><small class="text-muted"> @Model.AdsEntities[i].RegisterDt</small></p>
+                                </div>
+                                <div class="col-5">
+                                    <a href="@Url.Action("Profile", "Home", new { id = @Model.AdsEntities[i].UserId })" class="float-right" style="color: inherit; text-decoration: none;">
+                                        <p data-user-id="@Model.AdsEntities[i].UserId" class=" user-login card-text">
+                                            <small class="move text-muted">
+                                            @for (int j = 0; j < Model.userEntities.Count; j++)
+                                            {
+                                                if (Model.AdsEntities[i].UserId == Model.userEntities[j].Id)
+                                                {
+                                                    @Model.userEntities[j].Login;
+                                                }
+
+                                            }
+                                            </small></p>
+                                    </a>
+                                </div>
+                                <div class="col-3">
+                                    
+                                        
+                                            @if (Context.User.Identity?.IsAuthenticated ?? true)
+                                            {
+                                                String avatar = Context.User.Claims
+                                                .First(claim => claim.Type == ClaimTypes.UserData)
+                                                .Value;
+                                                String id = Context.User.Claims
+                                                .First(claim => claim.Type == ClaimTypes.Sid)
+                                                .Value;
+                                                   if (Model.AdsEntities[i].UserId == id)
+                                                    {
+                                                         <small class="text-muted">
+                                                            <button data-ads-id="@Model.AdsEntities[i].Id" class="move link-style ">Видалити</button>
+                                                         </small>
+                                                    }
+                                            
+                                            }
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+        
+    }
+</body>
+
+

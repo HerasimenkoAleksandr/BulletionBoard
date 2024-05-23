@@ -1,0 +1,74 @@
+﻿@model BulletionBoard.Models.Ads.AdsViewModel
+@{
+    ViewData["Title"] = "Додайте Ваше оголошення";
+}
+<h1 class="display-4">Додайте оголошення</h1>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Ads" asp-action="AdsFromForm">
+        <div class="row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+              <div>
+            <label for="selectThem" class="form-label">Оберіть категорію</label>
+                    <select name="ads-theme" id="selectThem" class="form-select" aria-label="Default select example">
+                         @for (int i = 0; i < Model.Theme.PicturesModels.Count; i++){
+                             if(i==0)
+                            {
+                                <option value="@Model.Theme.PicturesModels[i].Name" selected>@Model.Theme.PicturesModels[i].Name</option>
+                            }
+                            else
+                            {
+                               <option value="@Model.Theme.PicturesModels[i].Name">@Model.Theme.PicturesModels[i].Name</option>  
+                            }  
+                         }
+            </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md">
+            <div class="form-floating">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Додайте картинку</label>
+                    <input name="ads-file" class="form-control" type="file" id="formFile">
+                </div>
+               
+            </div>
+        </div>      
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Введіть назву або тему</label>
+            <input name="ads-name" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Назва">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Додайте текс оголошення</label>
+        <textarea name="ads-description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Тіло оголошення..."></textarea>
+        </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-success" type="submit">Додати </button>
+        </div>
+    </div>
+</form>
+
+@if (Model.FormStatus == true)
+{
+    <div class="alert alert-success" role="alert">
+       Оголошення успішно створено
+       
+    </div>
+}
+@if (Model.FormStatus == false)
+{
+    <div class="alert alert-danger" role="alert">
+        Виникли помилки реєстрації
+        @Model.FormValidation?.NameErrorMessage
+        @Model.FormValidation?.DescriptionErrorMessage
+        @Model.FormValidation?.PictureErrorMessage
+        @Model.FormValidation?.DbErrorMessage
+    </div>
+}
+

@@ -1,0 +1,84 @@
+
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.beta {
+    background-color: #eceff6
+}
+
+.move:hover, .move:active {
+    transform: scale(0.98); /* уменьшаем размер блока при наведении или активации */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* добавляем тень */
+}
+.move1:hover, .move:active {
+    transform: scale(0.98); /* уменьшаем размер блока при наведении или активации */
+   
+}
+.move2 {
+  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* добавляем тень */
+}
+
+.max-width {
+    max-width: 100%;
+}
+
+.nav-avatar {
+    border-radius: 50%;
+    max-height: 40px;
+    min-width: 40px;
+}
+.nav-avatar2 {
+    max-height: 300px;
+    min-width: 300px;
+}
+
+#myfile {
+    display: none; /* Скрыть элемент */
+}
+
+.fixed-size-img {
+    width: 100%;
+    height: 250px; /* Фиксированная высота */
+
+    object-fit: fill;
+}
+.max-height-card {
+    max-height: 300px; /* Установите желаемую максимальную высоту */
+  
+}
+.link-style {
+    color: inherit; /* Наследование цвета текста */
+    text-decoration: none; /* Удаление подчеркивания */
+    background: none; /* Удаление фона кнопки */
+    border: none; /* Удаление границ кнопки */
+    padding: 0; /* Удаление внутренних отступов */
+    cursor: pointer; /* Изменение курсора на указатель */
+    font: inherit; /* Наследование шрифта */
+}
+
+.prof-button {
+    max-height: 100%;
+    min-width: 100%;
+}

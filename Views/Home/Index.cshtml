@@ -1,0 +1,39 @@
+﻿﻿@using System.Security.Claims
+@model BulletionBoard.Models.PicturesHome.IndexViewModel
+@{
+    ViewData["Title"] = "BulletionBoard";
+}
+<body class="beta">
+<div class="text-center">
+    <h1 class="display-4">Дошка безкоштовних оголошень</h1>
+        @if (Context.User.Identity?.IsAuthenticated ?? true)
+        {
+         
+        }
+        else
+        {
+           <p> <small>
+            (Авторизуйтесь для створення оголошення)</small></p>
+        }
+    </div>
+    <div class="row my-4 rounded-3 ">
+         
+        @for (int i = 0; i < Model.PicturesModels.Count; i++){
+          <div  class="card mb-4 col-md-4" style="max-width: 540px;">
+                <a href="@Url.Action("Ads","Ads", new { id = Model.PicturesModels[i].Id })" class="row g-0  my-2 align-items-center move  beta rounded-3" style="color: inherit; text-decoration: none;">
+                    <div class="col-md-4 p-2">
+                        <img src="@Model.PicturesModels[i].PathToPictures" class="img-fluid rounded-3" alt="...">
+                    </div>
+                    <div class="col-md-7 d-flex">
+                        <div class="card-body ">
+                            <h5 class="card-title  stretched-link">@Model.PicturesModels[i].Name</h5>
+                </div>
+            </div>
+        </a>
+    
+    </div>
+        }
+    </div>
+</body>
+
+

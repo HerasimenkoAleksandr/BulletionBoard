@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletionBoard", "BulletionBoard.csproj", "{7A3CE9B7-7107-40D9-964A-188DA56E4999}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A3CE9B7-7107-40D9-964A-188DA56E4999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3CE9B7-7107-40D9-964A-188DA56E4999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3CE9B7-7107-40D9-964A-188DA56E4999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3CE9B7-7107-40D9-964A-188DA56E4999}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E06597B-25F2-4D30-8E3D-2E80EEF7C89A}
+	EndGlobalSection
+EndGlobal
